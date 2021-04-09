@@ -1,0 +1,21 @@
+.layout {
+    display: flex;
+    // overflow: hidden;
+    height: 100vh;
+    .layout-sider {
+        .ant-layout-sider-children{}
+    }
+    .ant-layout {
+      // overflow: hidden;
+      .ant-layout-header{
+          background: #fff;
+          padding: 0;
+      }
+    }
+    .layout-content {
+      // flex: none;
+      margin: 21px;
+      // background: #fff;
+      min-height: auto
+    }
+  }
