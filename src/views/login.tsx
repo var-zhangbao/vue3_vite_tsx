@@ -24,13 +24,12 @@ export default defineComponent({
         const loginbtn = () => {
             // userName.value = loginForm.userName
             // showlogin=true
-            // console.log(showlogin)
-            // console.log(context)
             login({
                 name: 'zhangsan'
             }).then(res => {
                 console.log(res)
             })
+
             // $router.push({
             //     path: '/'
             // })
