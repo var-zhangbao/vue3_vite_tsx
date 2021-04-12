@@ -5,7 +5,6 @@ const app = new Koa();
 // const cors =  require('cors')
 
 app.use(async (ctx, next) => {
-    console.log(111)
     console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
     await next()
 })

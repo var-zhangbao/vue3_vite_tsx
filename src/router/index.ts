@@ -23,6 +23,22 @@ export const routes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/chat',
+    component: Layout,
+    redirect: '/chat/chatRoom',
+    meta: {
+      title: '聊天室'
+    },
+    children: [
+      {
+        path: 'chatRoom',
+        component: () => import('@/views/wechat'),
+        name: 'chatRoom',
+        meta: {}
+      }
+    ]
   }
 ];
 // process.env.BASE_URL

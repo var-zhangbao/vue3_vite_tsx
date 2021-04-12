@@ -3,6 +3,7 @@ import { defineComponent, onMounted, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router';
 import '../style/login.scss'
 import { login } from '@/api/login'
+import { message } from 'ant-design-vue';
 interface LOGINFORM {
     userName: string,
     password: any
@@ -25,14 +26,20 @@ export default defineComponent({
             // userName.value = loginForm.userName
             // showlogin=true
             login({
-                name: 'zhangsan'
+                name: loginForm.userName,
+                password: loginForm.password
             }).then(res => {
                 console.log(res)
+                if (res.status === 200) {
+                    $router.push({
+                        path: '/'
+                    })
+                } else {
+                    message.error(res.message);
+                }
             })
 
-            // $router.push({
-            //     path: '/'
-            // })
+            
         }
         const eventLine = () => {
             for(let i = 0 ; i < 16; i++) {

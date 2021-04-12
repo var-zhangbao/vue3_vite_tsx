@@ -142,7 +142,7 @@ const transform: AxiosTransform = {
     },
 }
 const Axios = new VAxios({
-    // timeout: 15 * 1000,
+    timeout: 15 * 1000,
     headers: {},
     transform,
     withCredentials: false,
