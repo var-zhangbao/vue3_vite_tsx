@@ -1,26 +1,25 @@
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref } from 'vue'
 import '../../style/chat.scss'
 import { getUserList } from '@/api/login'
 export default defineComponent({
     setup() {
-        
-        const userList = (): any[] => {
-            let user: any[] = []
-            getUserList({
-                name: 'admin'
-            }).then(res => {
-                user = res.userlist
-            })
-            console.log(user, '00000')
-            return user
-        }
-        // console.log(user,'3333')
+        let user = reactive<any>([])
         let flag = ref<number>(-1)
         const currentUser = (index:number) => {
           flag.value =  index
         }
+        const userList = async () => {
+            getUserList({name: 'admin'}).then(res => {
+                for (let i =0; i<res.userlist.length; i++) {
+                    user.push(res.userlist[i])
+                }
+            })
+            
+        }
+        userList();
+        console.log(user, '222')
         onMounted(() => {
-            console.log(userList(), '999')
+            
             
         })
         return () => (
@@ -33,9 +32,16 @@ export default defineComponent({
                             </div>
                             <ul class="user-list-box">
                                 {
-                                    // userList.map((item, index) => (
-                                    //     <li onClick={() => currentUser(index)} class={[{'active': flag.value === index}, 'friends']}>{`好友${index+1}`}</li>
-                                    // ))
+                                    user.map((item: any, index: number) => (
+                                        <li onClick={() => currentUser(index)} class={[{'active': flag.value === index}, 'friends']}>
+                                            <div class="portrait">
+                                                <img src={item.usericon} alt="" class="img"/>
+                                            </div>
+                                            <div class="friends-info">
+                                                <span>{item.name}</span>
+                                            </div>
+                                        </li>
+                                    ))
                                 }
                             </ul>
                         </div>

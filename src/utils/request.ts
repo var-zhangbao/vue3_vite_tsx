@@ -30,7 +30,6 @@ export class VAxios {
         // 响应结果拦截
 
         this.axiosInstance.interceptors.response.use((res:AxiosResponse<any>) => {
-            console.log(res, '222')
             return res;
         }, undefined)
     }
@@ -42,7 +41,6 @@ export class VAxios {
     request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
         let conf: AxiosRequestConfig =config;
         const transform = this.getTransform();
-        console.log(transform,'000')
         const { requestOptions } = this.options;
     
         const opt: RequestOptions = Object.assign({}, requestOptions, options);
@@ -57,9 +55,7 @@ export class VAxios {
               .then((res: AxiosResponse<Result>) => {
                 // 请求是否被取消
                 const isCancel = axios.isCancel(res)
-                console.log(transformRequestData)
                 if (transformRequestData && !isCancel) {
-                  console.log(opt)
                   const ret = transformRequestData(res, opt);
                   // ret !== undefined ? resolve(ret) : reject(new Error('request error!'));
                   return resolve(ret)

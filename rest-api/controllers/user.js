@@ -7,7 +7,7 @@ module.exports = {
         if (ctx.query.name === 'admin') {
             let userlist = []
             let user = {}
-            for (let i = 0; i< 15; i++) {
+            for (let i = 0; i< 20; i++) {
                 user = {
                     name: `admin的好友${i+1}`,
                     usericon: 'https://www.17sucai.com/preview/1424582/2020-06-22/quicky/assets/media/avatar/2.png'
